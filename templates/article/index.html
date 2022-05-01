@@ -1,0 +1,62 @@
+{% extends 'basic.html'%}
+
+{% block content%}
+{% load static %}
+
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+
+                <!-- Masthead Heading-->
+                {% if status %}
+
+                <h1 class="masthead-heading text-uppercase mb-0">{{name}}</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Masthead Subheading-->
+                <p class="masthead-subheading font-weight-light mb-0">Insert Search Box Here</p>
+                {% else%}
+                <h2 class="text-uppercase mb-0">No Results with this tag {{name}}</h2>
+                {% endif%}
+            </div>
+        </header>
+        <div class="row border m-2">
+            <h1>Here comes Search Bar</h1>
+        </div>
+        <div class="row px-5">
+
+            <div class="col-sm-8 mt-4">
+                {% for i in articles %}
+                <a href="{% url 'article_detail' i.id%}" style="link-decoration:none; color:black;">
+                    <div class="row">
+                        <div class="card mb-3 py-2">
+                          <div class="card-body">
+                            <h5 class="card-title">{{i.heading}}</h5>
+                            <p class="card-text">{{i.meta}}</p>
+                              <ul class="list-inline border px-2">
+                                  {% for j in i.tags.all%}
+                                  <li class="list-inline-item"><span style="font-size:12px; color:black;">{{i}}</span></li>
+                                  {% endfor %}
+                              </ul>
+
+                              <ul class="list-inline">
+                                      <li class="list-inline-item"><p class="card-text"><small class="text-muted">23 Comments</small></p></li>
+                                  <li class="list-inline-item"><p class="card-text"><small class="text-muted">Created on <b> {{i.date}}</b></small></p></li>
+                               </ul>
+                          </div>
+                        </div>
+                    </div>
+                </a>
+                {%endfor%}
+
+            </div>
+
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+{% endblock%}

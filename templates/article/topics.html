@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Freelancer - Start Bootstrap Theme</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <!--        <link href="{% static 'css/styles.css'}" rel="stylesheet" />-->
+        {% include 'static/style.html'%}
+    </head>
+    <body id="page-top" style="background-color:black">
+        <!-- Navigation-->
+
+        <div style="margin-bottom:2rem;">
+
+        </div>
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <h4 class=" text-center text-uppercase text-light text-secondary mb-4">Select a Topic</h4>
+                <!-- Icon Divider-->
+
+                <!-- Portfolio Grid Items-->
+                <div class="row justify-content-center">
+                    <!-- Portfolio Item 1-->
+                    {% for i in tags %}
+                        <div class="col-md-6 col-lg-3 mb-5">
+                            <a href="{% url 'articles' i.name %}">
+                                <div class="portfolio-item mx-auto" >
+                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                    </div>
+                                    <img class="img-fluid" src="{% static 'assets/img/portfolio/cabin.png' %}" alt="..." />
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <div class="copyright py-4 text-center text-white" style="position:absolute; bottom:0; width:100%;">
+            <div class="container"><small>It's impossible to understand everything but we should push ourselves to understand the system.</small></div>
+        </div>
+
+
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        {% include 'static/js.html'%}
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</html>
+
+
+

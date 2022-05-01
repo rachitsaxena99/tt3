@@ -1,0 +1,50 @@
+{% extends 'basic.html'%}
+
+{% block content%}
+      <div class="row mt-5" style="padding-top:6rem;">
+          <div class="col-sm-3">
+
+          </div>
+          <div class="col-sm-9">
+
+
+          <h4><small>Articles</small></h4>
+          <hr>
+          <h2>{{article.heading}}</h2>
+          <h5><span class="glyphicon glyphicon-time"></span> Post by {{user.username}}, {{article.date}}.</h5>
+              <br>
+              <i><p class="italic">{{article.meta}}</p></i>
+              {% for i in para%}
+                  <p>
+                      {{i}}
+                  </p>
+                  <br>
+              {% endfor%}
+              <hr>
+
+          <h4>Leave a Comment:</h4>
+          <form role="form" action="{% url 'newComment' article.id%}" method="POST">{% csrf_token%}
+            <div class="form-group">
+              <textarea class="form-control" name="commentText" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success mt-2">Submit</button>
+          </form>
+
+            <br>
+          <h3> Comments:</h3>
+            {% for i in comments%}
+          <div class="row">
+            <div class="col-sm-2 text-center">
+              <img src="" class="img-circle" height="65" width="65" alt="Avatar">
+            </div>
+            <div class="col-sm-10">
+              <h5>{{user.username}} <small>{{i.date}}</small></h5>
+                <p>{{i.reaction}}</p><br>
+            </div>
+
+          </div>
+              {% endfor%}
+        </div>
+
+      </div>
+{% endblock content%}
