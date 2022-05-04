@@ -1,0 +1,23 @@
+{% extends "basic.html" %}
+
+{% block content %}
+    <div class='container' style="margin-top:7rem;">
+        <div class="blog-post p-5" >
+            <h2 class="blog-post-title">{{question.heading}}</h2>
+            <p class="blog-post-meta">{{question.date}} by <a href="#">{{question.user.username}}</a></p>
+        
+            <hr>
+            
+            <div class="d-inline p-2 bg-primary text-white" style="border-radius:5px;">{{question.tags.name}}</div>
+            
+            <hr>
+            {% for i in paras %}
+                <blockquote>
+                    <h5>{{i}}</h5>
+                </blockquote>
+            {% endfor %}
+        </div><!-- /.blog-post -->
+        
+        
+    </div>
+{% endblock content %}

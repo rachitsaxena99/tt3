@@ -27,7 +27,7 @@ class Question(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     difficulty = models.CharField(max_length=100 , choices=DIFF_CHOICES )
-    tags = models.ManyToManyField(Category, blank=True)
+    tags = models.ForeignKey(Category,blank=True , null=True, on_delete=models.CASCADE)
     description = models.TextField()
     image = models.ImageField(null=True, blank=True)
     # example = models.

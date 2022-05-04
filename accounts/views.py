@@ -21,3 +21,4 @@ def register(request):
 def logoutPage(request):
     logout(request)
     return redirect("loginPage")
+
