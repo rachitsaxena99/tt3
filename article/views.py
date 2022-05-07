@@ -1,7 +1,9 @@
 from django.shortcuts import render , redirect
 from article.models import Tag , Article , RelationArticle, CommentArticle
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url="loginPage")
 def index(request):
     return render(request , 'homepage.html')
 
