@@ -12,12 +12,41 @@
             
             <hr>
             {% for i in paras %}
-                <blockquote>
-                    <h5>{{i}}</h5>
-                </blockquote>
+
+                    <strong><p class="card-text">{{i}}</p>
+</strong>
             {% endfor %}
-        </div><!-- /.blog-post -->
+
         
         
+
+
+
+        {% for i in question.example.all%}
+        <div class="card my-4" style="width:60em;">
+          <div class="card-body">
+            <h5 class="card-title">Test Case {{forloop.counter}}</h5>
+            <p class="card-text"><strong>Input: {{i.input}}</strong></p>
+              <p class="card-text"><strong>Expected Output: {{i.output}}</strong></p>
+            <hr>
+              <p class="card-text"><strong>Explaination: <br>{{i.explaination}}</strong></p>
+
+          </div>
+          <img class="card-img-bottom" src="{{i.img.url}}" style='max-height:20em;' alt="Card image cap">
+        </div>
+        {% endfor %}
+
+        <div class="mt-5">
+            <nav class="navbar navbar-dark bg-dark" style="border-radius:5px 5px 0 0 ; ">
+              <span class="ml-3"></span>
+                <span class="navbar-brand  mb-0 h1">Try It Yourself</span>
+            </nav>
+            <div class="form-group">
+                <textarea class="form-control text-white" id="exampleFormControlTextarea1" rows="18" style="border-radius:0 0 5px 5px; background:black; "></textarea>
+            </div>
+        </div>
+            </div>
+
     </div>
+
 {% endblock content %}

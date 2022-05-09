@@ -1,4 +1,5 @@
 from django.contrib import admin
-#Comment
-#This is a reeeegular coommnt
-# Register your models here.
+from accounts.models import  *
+
+admin.site.register(Profile)
+admin.site.register(Experience)

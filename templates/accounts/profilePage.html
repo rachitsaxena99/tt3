@@ -1,0 +1,117 @@
+{% extends 'basic.html'%}
+
+{% block content%}
+<div style="margin-top:5em;">
+    </div>
+<div class="container rounded bg-white mt-5 mb-5">
+                            <div class="row">
+                                <div class="col-md-3 border-right">
+                                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{profile.user.username}}</span><span class="text-black-50">{{profile.user.email}}</span><span> </span></div>
+                                </div>
+                                <div class="col-md-9 border-right">
+                                    <div class="p-3 py-5">
+
+                                        <div class="row mt-4">
+
+                                            <div class="col-md-6"><label class="labels">Questions</label><h3>12</h3></div>
+                                            <div class="col-md-6"><label class="labels">Answers</label><h3>12</h3></div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center my-3">
+                                            <a href="" class="btn btn-outline-primary profile-button" type="button">Edit Profile</a>
+                                        </div>
+
+                                        <div class="card">
+                                              <div class="card-header">
+                                                About <strong>{{user}}</strong>
+                                              </div>
+                                              <div class="card-body">
+                                                <blockquote class="blockquote mb-0">
+                                                  <p>{{profile.about}}</p>
+                                                  </blockquote>
+                                              </div>
+                                        </div>
+                                        <div class="card mt-5" >
+                                                  <div class="card-header d-flex justify-content-between">
+                                                    <span>Experience</span>
+                                                      <span>Add</span>
+                                                  </div>
+                                                  <ul class="list-group list-group-flush">
+                                                  {% for i in profile.experience.all%}
+                                                      <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <h6>{{i.designation}}</h6>
+                                                                <i><p>{{i.startDate}} - {{i.endDate}}</p></i>
+
+                                                            </div>
+                                                            <div class="col-sm-4 d-flex justify-content-end">
+                                                                    <p>Edit</p>
+                                                            </div>
+                                                        </div>
+
+                                                    </li>
+                                                  {% endfor%}
+                                                  </ul>
+                                        </div>
+                                        <div class="card mt-5" >
+                                                  <div class="card-header">
+                                                    Education
+                                                  </div>
+                                                  <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <h6>Indirapuram Public School</h6>
+                                                                <i><p>class 12 |2015-2016</p></i>
+
+                                                            </div>
+                                                            <div class="col-sm-4 d-flex justify-content-end">
+                                                                    <p>Edit</p>
+                                                            </div>
+                                                        </div>
+
+                                                    </li>
+
+                                                      <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <h6>Indirapuram Public School</h6>
+                                                                <i><p>class 12 |2015-2016</p></i>
+
+                                                            </div>
+                                                            <div class="col-sm-4 d-flex justify-content-end">
+                                                                    <p>Edit</p>
+                                                            </div>
+                                                        </div>
+
+                                                    </li>
+                                                  </ul>
+
+                                        </div>
+                                        <div class="card mt-5">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <span>Skills</span>
+                                                    <small>Edit</small>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-sm-4">
+                                                    <div class="card text-center m-3">
+
+                                                      <div class="card-body">
+                                                        <h5 class="card-title">Python</h5>
+
+                                                      </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
+{% endblock content%}
