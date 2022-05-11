@@ -2,7 +2,7 @@ from django.shortcuts import render , redirect
 from article.models import Tag , Article , RelationArticle, CommentArticle
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
+from django.http import HttpResponse
 @login_required(login_url="loginPage")
 def index(request):
     return render(request , 'homepage.html')
@@ -52,3 +52,21 @@ def newComment(request , pk):
                 return redirect('article_detail',pk=article.id)
     except Exception as E:
         raise Exception(str(E))
+
+
+def searchResult(request ):
+    articles = []
+    count = 0
+    flag = False
+    if request.method=='POST':
+        keyword = request.POST.get('keyword')
+        articles = Article.objects.filter(content__contains=keyword)
+
+        count = articles.count()
+        flag = True if count>0 else False
+    params = {
+        'articles':articles,
+        'count':count,
+        'flag':flag
+    }
+    return render(request , 'article/searchResults.html',params)

@@ -27,23 +27,23 @@
 
         </div>
         <section class="page-section portfolio" id="portfolio">
-            <div class="container">
+            <div class="container-fluid">
                 <!-- Portfolio Section Heading-->
                 <h5 class=" text-center text-uppercase text-light text-secondary mb-5">Select a Category</h2>
                 
                 <div class="row justify-content-center">
                     
                     {% for i in cateogry  %}
-                        <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="col-sm-3 ">
                             <a href="{% url 'questions' i.id %}">
                                 <div class="portfolio-item mx-auto" >
                                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                         <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                                     </div>
-                                    <img class="img-fluid" src="{{i.img.url}}" alt="..." />
+                                    <img class="img-fluid" src="{{i.img.url}}" alt="..." style="max-height:14rem;"/>
                                 </div>
                             </a>
-                        </div>>
+                        </div>
                     {% endfor %}
 
                 </div>

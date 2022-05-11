@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <!-- Section: Design Block -->
+      <section class="text-center">
+        <!-- Background image -->
+        <div class="p-5 bg-image" style="
+              background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+              height: 300px;
+              "></div>
+        <!-- Background image -->
+
+        <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+              margin-top: -100px;
+              background: hsla(0, 0%, 100%, 0.8);
+              backdrop-filter: blur(30px);
+              ">
+          <div class="card-body py-5 px-md-5">
+
+            <div class="row d-flex justify-content-center">
+              <div class="col-lg-8">
+                <h4 class="fw-bold mb-5">Welcome to TraineeToolz {{profile.user.username}}</h4>
+                <form action="" method="POST"> {% csrf_token%}
+                  <!-- 2 column grid layout with text inputs for the first and last names -->
+                  <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card mt-5" >
+                                                  <div class="card-header d-flex justify-content-between">
+                                                    <span>Experience</span>
+                                                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Add
+</button>
+                                                  </div>
+                                                  <ul class="list-group list-group-flush">
+                                                      {% for i in profile.experience.all%}
+                                                      <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <h6>{{i.designation}}</h6>
+                                                                <i><p>{{i.startDate}} - {{i.endDate}}</p></i>
+
+                                                            </div>
+                                                            <div class="col-sm-4 d-flex justify-content-end">
+                                                                    <p>Edit</p>
+                                                            </div>
+                                                        </div>
+
+                                                      </li>
+                                                      {% endfor%}
+
+                                                  </ul>
+                                        </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Add About Us
+                  </button>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section: Design Block -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Enter an Experience</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="{% url 'newExperience' profile.id%}"> {% csrf_token%}
+              <div class="row">
+                <input type="text" name="designation" class="form-control m-3" placeholder="Enter Designation" />
+
+              </div>
+              <div class="row">
+                <input type="text" name="company" class="form-control m-3" placeholder="Enter Company" />
+
+              </div>
+              <div class="row mt-4">
+                <div class="col-sm-6">
+                  <label>Start Date:</label>
+                  <input type="date" name="startDate" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                  <label>End Date:</label>
+                  <input type="date"  name='endDate' class="form-control" />
+                </div>
+              </div>
+<!--              <div class="row mt-5">-->
+
+<!--                <select class="form-control m-2" name="selectField" aria-label="Default select example">-->
+
+<!--                  {% for i in company%}-->
+<!--                    <option value="{{i.id}}">{{i.name}}</option>-->
+<!--                  {% endfor%}-->
+<!--                  <option selected>Other</option>-->
+<!--                </select>-->
+<!--              </div>-->
+
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    {% include 'accounts/autoreload.html' %}
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
