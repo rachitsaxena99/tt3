@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from question.models import Company
-
+from article.models import Tag
 class Profile(models.Model):
     profession = (
         ('student','student'),
@@ -14,6 +14,7 @@ class Profile(models.Model):
     profession = models.CharField(max_length=100 , default='other')
     about = models.TextField(blank=True)
     experience = models.ManyToManyField('Experience' , blank=True)
+    skills = models.ManyToManyField(Tag , blank=True)
     # connections = models.ManyToManyField('Connection' , blank=True, related_name='connection')
     def __str__(self):
         return self.user.username

@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>TraineeToolz</title>
   </head>
   <body>
     <!-- Section: Design Block -->
@@ -30,7 +30,7 @@
             <div class="row d-flex justify-content-center">
               <div class="col-lg-8">
                 <h4 class="fw-bold mb-5">Welcome to TraineeToolz {{profile.user.username}}</h4>
-                <form action="" method="POST"> {% csrf_token%}
+                <form action="{% url 'fillExperience' profile.id %}" method="POST"> {% csrf_token%}
                   <!-- 2 column grid layout with text inputs for the first and last names -->
                   <div class="row">
                     <div class="col-md-12 mb-4">
@@ -38,8 +38,8 @@
                                                   <div class="card-header d-flex justify-content-between">
                                                     <span>Experience</span>
                                                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Add
-</button>
+                                                          Add
+                                                        </button>
                                                   </div>
                                                   <ul class="list-group list-group-flush">
                                                       {% for i in profile.experience.all%}
@@ -60,11 +60,38 @@
 
                                                   </ul>
                                         </div>
+                        <div class="card mt-5" >
+                                                  <div class="card-header d-flex justify-content-between">
+                                                    <span>Skills</span>
+                                                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                                                          Add
+                                                        </button>
+                                                  </div>
+                                                  <ul class="list-group list-group-flush">
+                                                      {% for i in profile.skills.all%}
+                                                      <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-sm-8 d-flex justify-content-start">
+                                                                <h6>{{i.name}}</h6>
+
+
+                                                            </div>
+                                                            <div class="col-sm-4 d-flex justify-content-end">
+                                                                    <p>Edit</p>
+                                                            </div>
+                                                        </div>
+
+                                                      </li>
+                                                      {% endfor%}
+
+                                                  </ul>
+                                        </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary btn-block mb-4">
-                    Add About Us
-                  </button>
+
+                  <a href="{% url 'index' %}" class="btn btn-primary btn-block mb-4">
+                    Continue
+                  </a>
 
                 </form>
               </div>
@@ -123,6 +150,39 @@
         </div>
       </div>
     </div>
+
+     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel2">ase</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="{% url 'newSkill' profile.id%}"> {% csrf_token%}
+              <div class="row">
+                <select class="form-control mx-3" name="skill" aria-label="Default select example">
+                  <option> Select A Skill To Add</option>
+                    {% for i in tags%}
+                        <option>{{i}}</option>
+                    {% endfor%}
+
+                </select>
+              </div>
+
+
+
+          <div class="modal-footer">
+            <button type="submit" name="btn2" class="btn btn-primary">Add</button>
+          </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
     {% include 'accounts/autoreload.html' %}
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

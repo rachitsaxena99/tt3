@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate , login , logout
 from accounts.models import *
 from django.http import HttpResponse
 from question.models import Company
+from article.models import Tag
 
 def loginPage(request):
     if request.method=='POST':
@@ -64,9 +65,11 @@ def fillAboutUs(request,pk):
 
 def fillExperience(request,pk):
     profile = Profile.objects.get(user__id=pk)
+    if request.method=='POST':
+        print(request.POST.get('skills'))
     params = {
         'profile':profile,
-        'company': Company.objects.all()
+        'tags':Tag.objects.all()
     }
     return render(request , 'accounts/fillExperience.html', params)
 
@@ -86,3 +89,15 @@ def newExperience(request ,pk):
         profile.save()
         experince.save()
         return redirect('fillExperience' , pk=pk)
+
+def newSkill(request,pk):
+    profile = Profile.objects.get(id=pk)
+    if request.method == 'POST':
+        i = request.POST.get('skill')
+        try:
+            tag = Tag.objects.get(name=i)
+        except:
+            pass
+        profile.skills.add(tag)
+        profile.save()
+    return redirect('fillExperience',pk=pk)
