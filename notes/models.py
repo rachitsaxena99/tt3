@@ -14,3 +14,6 @@ class Unit(models.Model):
     file = models.FileField(null=True, blank=True)
     def __str__(self):
         return str((self.subject.name) + ' ' + str(self.unitNo))
+
+    class Meta:
+        unique_together = ('unitNo','subject')
