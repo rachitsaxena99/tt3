@@ -2,8 +2,16 @@
 
 {% block content%}
 <div style="margin-top:5em;">
+    <style>
+        body{
+        background: #D3CCE3;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+    </style>
     </div>
-<div class="container rounded bg-white mt-5 mb-5">
+<div class="container rounded  mt-5 mb-5">
                             <div class="row">
                                 <div class="col-md-3 border-right">
                                     <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{profile.user.username}}</span><span class="text-black-50">{{profile.user.email}}</span><span> </span></div>
@@ -17,12 +25,17 @@
                                             <div class="col-md-6"><label class="labels">Answers</label><h3>12</h3></div>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center my-3">
-                                            <a href="" class="btn btn-outline-primary profile-button" type="button">Edit Profile</a>
+
                                         </div>
 
-                                        <div class="card">
-                                              <div class="card-header">
-                                                About <strong>{{user}}</strong>
+                                        <div class="card" style="background:#D3D3D3;">
+                                              <div class="card-header d-flex justify-content-between">
+                                                <div>
+                                                    About <strong>{{user}}</strong>
+                                                </div>
+                                                  <div>
+                                                     <a href="{% url 'editAboutUs' user.id%}">Edit</a>
+                                                  </div>
                                               </div>
                                               <div class="card-body">
                                                 <blockquote class="blockquote mb-0">
@@ -30,7 +43,7 @@
                                                   </blockquote>
                                               </div>
                                         </div>
-                                        <div class="card mt-5" >
+                                        <div class="card mt-5" style="background:#D3D3D3;">
                                                   <div class="card-header d-flex justify-content-between">
                                                     <span>Experience</span>
                                                       {% if profile.experience.all%}
@@ -40,7 +53,7 @@
                                                   <ul class="list-group list-group-flush">
                                                       {% if profile.experience.all%}
                                                           {% for i in profile.experience.all%}
-                                                              <li class="list-group-item">
+                                                              <li class="list-group-item" style="background:#D3D3D3;">
                                                                 <div class="row">
                                                                     <div class="col-sm-8">
                                                                         <h6>{{i.designation}}</h6>
@@ -48,7 +61,8 @@
 
                                                                     </div>
                                                                     <div class="col-sm-4 d-flex justify-content-end">
-                                                                            <a href="{% url 'removeExperience' profile.id i.id%}">Edit</a>
+                                                                        <a href="{% url 'fillExperience' user.id %}">Edit</a>
+                                                                            <a href="{% url 'removeExperience' profile.id i.id%}">X</a>
                                                                     </div>
                                                                 </div>
 
@@ -58,7 +72,7 @@
                                                             <li class="list-group-item">
                                                                 <div class="row">
                                                                     <div class="col-sm-12 py-2 d-flex justify-content-center">
-                                                                        <h6><a href="" style="text-decoration:none; color:black;">Add Experience</a></h6>
+                                                                        <h6><a href="{% url 'fillExperience' user.id%}" style="text-decoration:none; color:black;">Add Experience</a></h6>
 
 
                                                                     </div>
@@ -68,7 +82,7 @@
                                                       {% endif%}
                                                   </ul>
                                         </div>
-                                        <div class="card mt-5" >
+                                        <div class="card mt-5" style="background:#D3D3D3;">
                                                   <div class="card-header">
                                                     Education
                                                   </div>
@@ -103,7 +117,7 @@
                                                   </ul>
 
                                         </div>
-                                        <div class="card mt-5">
+                                        <div class="card mt-5" style="background:#D3D3D3;">
                                             <div class="card-header d-flex justify-content-between">
                                                 <span>Skills</span>
                                                     <small>Edit</small>

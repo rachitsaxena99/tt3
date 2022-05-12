@@ -29,8 +29,8 @@
 
             <div class="row d-flex justify-content-center">
               <div class="col-lg-8">
-                <h4 class="fw-bold mb-5">Welcome to TraineeToolz {{profile.user.username}}</h4>
-                <form action="{% url 'fillExperience' profile.id %}" method="POST"> {% csrf_token%}
+                <h4 class="fw-bold mb-5">Add Experience {{profile.user.username}}</h4>
+                <form action="" method="POST"> {% csrf_token%}
                   <!-- 2 column grid layout with text inputs for the first and last names -->
                   <div class="row">
                     <div class="col-md-12 mb-4">
@@ -51,8 +51,7 @@
 
                                                             </div>
                                                             <div class="col-sm-4 d-flex justify-content-end">
-                                                                    <a href="{% url 'removeExperience' profile.id i.id%}" >Remove</a>
-
+                                                                    <p>Edit</p>
                                                             </div>
                                                         </div>
 
@@ -61,32 +60,7 @@
 
                                                   </ul>
                                         </div>
-                        <div class="card mt-5" >
-                                                  <div class="card-header d-flex justify-content-between">
-                                                    <span>Skills</span>
-                                                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
-                                                          Add
-                                                        </button>
-                                                  </div>
-                                                  <ul class="list-group list-group-flush">
-                                                      {% for i in profile.skills.all%}
-                                                      <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-sm-8 d-flex justify-content-start">
-                                                                <h6>{{i.name}}</h6>
 
-
-                                                            </div>
-                                                            <div class="col-sm-4 d-flex justify-content-end">
-
-                                                            </div>
-                                                        </div>
-
-                                                      </li>
-                                                      {% endfor%}
-
-                                                  </ul>
-                                        </div>
                     </div>
                   </div>
 
@@ -111,23 +85,23 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST" action="{% url 'newExperience' profile.id%}"> {% csrf_token%}
+            <form method="POST" action=""> {% csrf_token%}
               <div class="row">
-                <input type="text" required name="designation" class="form-control m-3" placeholder="Enter Designation" />
+                <input type="text" name="designation" class="form-control m-3" placeholder="Enter Designation" />
 
               </div>
               <div class="row">
-                <input type="text" required name="company" class="form-control m-3" placeholder="Enter Company" />
+                <input type="text" name="company" class="form-control m-3" placeholder="Enter Company" />
 
               </div>
               <div class="row mt-4">
                 <div class="col-sm-6">
                   <label>Start Date:</label>
-                  <input type="date" required name="startDate" class="form-control" />
+                  <input type="date" name="startDate" class="form-control" />
                 </div>
                 <div class="col-sm-6">
                   <label>End Date:</label>
-                  <input type="date" required  name='endDate' class="form-control" />
+                  <input type="date"  name='endDate' class="form-control" />
                 </div>
               </div>
 <!--              <div class="row mt-5">-->
@@ -162,7 +136,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST" action="{% url 'newSkill' profile.id%}"> {% csrf_token%}
+            <form method="POST" action=""> {% csrf_token%}
               <div class="row">
                 <select class="form-control mx-3" name="skill" aria-label="Default select example">
                   <option> Select A Skill To Add</option>

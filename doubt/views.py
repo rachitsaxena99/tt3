@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
 from doubt.models import Doubt , Comment , subComment
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url="loginPage")
 def index(request):
     return render(request ,'doubt/index.html')
 
-
+@login_required(login_url="loginPage")
 def newDoubt(request):
     if request.method=='POST':
         kwargs = {}
@@ -24,6 +26,7 @@ def newDoubt(request):
 
     return render(request , 'doubt/doubt.html')
 
+@login_required(login_url="loginPage")
 def doubt(request , pk):
     doubt = Doubt.objects.get(id=pk)
     params = {
@@ -31,7 +34,7 @@ def doubt(request , pk):
     }
     return render(request , 'doubt/doubt.html' , params)
 
-
+@login_required(login_url="loginPage")
 def newComment(request , pk):
     doubt = Doubt.objects.get(id=pk)
     if request.method == 'POST':

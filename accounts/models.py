@@ -33,6 +33,9 @@ class Experience(models.Model):
     designation = models.CharField(max_length=1000)
     user = models.ForeignKey(User , on_delete=models.CASCADE)
 
+    class Meta:
+        unique_together= ('user','startDate')
+
 @receiver(post_save , sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:

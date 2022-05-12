@@ -8,6 +8,7 @@ def index(request):
     return render(request , 'homepage.html')
 
 
+@login_required(login_url="loginPage")
 def topics(request):
     tags = Tag.objects.all()
     params = {
@@ -15,6 +16,7 @@ def topics(request):
     }
     return render(request , 'article/topics.html' , params)
 
+@login_required(login_url="loginPage")
 def articles(request ):
     articles = Article.objects.all()
 
@@ -26,6 +28,7 @@ def articles(request ):
 
     return render(request , 'article/index.html' , params )
 
+@login_required(login_url="loginPage")
 def article_detail(request , pk):
     article = Article.objects.get(id=pk)
     para  = str(article.content).split('/')
@@ -39,7 +42,7 @@ def article_detail(request , pk):
     return render(request , 'article/article_detail.html' ,params)
 
 
-
+@login_required(login_url="loginPage")
 def newComment(request , pk):
     try:
         article = Article.objects.get(id=pk)
@@ -53,7 +56,7 @@ def newComment(request , pk):
     except Exception as E:
         raise Exception(str(E))
 
-
+@login_required(login_url="loginPage")
 def searchResult(request ):
     articles = []
     count = 0

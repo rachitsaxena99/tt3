@@ -108,4 +108,15 @@ def removeExperience(request,p1,p2):
     experience = Experience.objects.get(id=p2)
     profile.experience.remove(experience)
     profile.save()
-    print('Donee')
+    return redirect('profilePage',pk=profile.user.id)
+
+def editAboutUs(request,pk):
+    profile = Profile.objects.get(user__id = pk)
+    if request.method == 'POST':
+        body = request.POST.get('about')
+        if len(body):
+            profile.about = body
+            profile.save()
+        return redirect("profilePage", pk=profile.user.id)
+    return render(request , 'accounts/editAbout.html')
+

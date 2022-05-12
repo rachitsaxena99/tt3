@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from notes.models import Subject
+from .filters import *
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url="loginPage")
 def index(request):
     subjects = Subject.objects.all()
     flag= False
@@ -17,7 +20,7 @@ def index(request):
     }
     return render(request,'notes/index.html',params)
 
-
+@login_required(login_url="loginPage")
 def searchResults(request):
     subject = Subject.objects.all().first()
     if request.method=='POST':
@@ -31,11 +34,13 @@ def searchResults(request):
     }
     return render(request , 'notes/search-result.html', params)
 
+@login_required(login_url="loginPage")
 def mainPage(request):
     subjects = Subject.objects.all()
-    print(subjects)
+
     params = {
         'subjects': subjects,
-        'subject':subjects.first()
+        'subject':subjects.first(),
+
     }
     return render(request,'notes/notesPage.html',params)

@@ -1,47 +1,51 @@
-{% extends 'basic.html'%}
+{% extends 'blog-basic.html'%}
+
 {% block content%}
-{% load static %}
-<hr style="margin-top:5rem; opacity:0;" >
+        <!-- Main Content-->
+ <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Notes</h1>
+                            <form method="POST" action="{% url 'notes' %}"> {% csrf_token%}
 
-<div class="container-fluid">
-    <div class="row">
+                            <div class="row d-flex justify-content-center   mt-md-4">
+                                    <input type="text" name="keyword" class="form-control" placeholder="Search for subjects" style="max-width:25rem;"/>
+                                    <button class="btn btn-primary btn-sm" style="max-width:10rem;" type="submit">Search</button>
 
-            <div class="col-sm-3 pt-5" style="background-color:#D3D3D3;">
-                <form method="POST" action="{% url 'search-subject' %}"> {% csrf_token%}
-                <div class="form-group" style="width:100%;">
-                    <label for="exampleFormControlSelect1">Select Subject</label>
-                    <select class="form-control" name='subject' id="exampleFormControlSelect1">
-
-                        {% for i in subjects%}
-                            <option>{{i}}</option>
-                        {% endfor%}
-                    </select>
-                </div>
-                <br>
-                <button class="btn btn-sm btn-primary" type="submit">Search</button>
-                </form>
-            </div>
-
-        <div class="col-sm-9 pt-5">
-
-                <div class="row">
-                        <h3>{{subject}}</h3>
-
-                        {% for i in subject.units.all%}
-                            <div class="col-sm-3 mb-5">
-                                <div class="card" >
-                                  <img class="card-img-top" src="{{subject.img.url}}" alt="Card image cap">
-                                  <div class="card-body">
-                                    <h5 class="card-title">Unit {{i.unitNo}}</h5>
-                                    <a href="{{i.file.url}}" class="btn btn-primary btn-sm">Download?</a>
-                                  </div>
-                                </div>
                             </div>
-                        {% endfor %}
+                            </form>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </header>
 
+        <div class="container-fluid">
+            <h3>Showing Results for {{}}</h3>
+            <hr>
+            {% for i in subjects%}
+                <div class="row">
+
+
+                            <h3>{{i}}</h3>
+
+                                {% for j in i.units.all%}
+                                    <div class="col-sm-3 mb-5">
+                                        <div class="card" >
+                                          <img class="card-img-top" src="{{subject.img.url}}" alt="Card image cap">
+                                          <div class="card-body">
+                                            <h5 class="card-title">Unit {{j.unitNo}}</h5>
+                                            <a href="{{j.file.url}}" class="btn btn-primary btn-sm">Download?</a>
+                                          </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                </div>
+            {% endfor%}
         </div>
-    </div>
-</div>
-
-{% endblock content%}
+        <!-- Footer-->
+        {% endblock content%}
+{% include 'accounts/autoreload.html' %}
