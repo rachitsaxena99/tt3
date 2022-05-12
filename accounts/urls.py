@@ -9,6 +9,8 @@ urlpatterns = [
     path('profilePage/<str:pk>' , views.ProfilePage ,name='profilePage' ),
     path('fill-aboutus/<str:pk>', views.fillAboutUs, name='fillAboutUs'),
     path('fill-experience/<str:pk>' , views.fillExperience , name='fillExperience'),
+
     path('newExperience/<str:pk>',views.newExperience , name='newExperience' ),
+    path('removeExperience/<str:p1>/<str:p2>/' , views.removeExperience,name='removeExperience'),
     path('newSkill/<str:pk>', views.newSkill , name='newSkill')
 ]

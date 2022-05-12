@@ -33,24 +33,39 @@
                                         <div class="card mt-5" >
                                                   <div class="card-header d-flex justify-content-between">
                                                     <span>Experience</span>
+                                                      {% if profile.experience.all%}
                                                       <span>Add</span>
+                                                      {% endif%}
                                                   </div>
                                                   <ul class="list-group list-group-flush">
-                                                  {% for i in profile.experience.all%}
-                                                      <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-sm-8">
-                                                                <h6>{{i.designation}}</h6>
-                                                                <i><p>{{i.startDate}} - {{i.endDate}}</p></i>
+                                                      {% if profile.experience.all%}
+                                                          {% for i in profile.experience.all%}
+                                                              <li class="list-group-item">
+                                                                <div class="row">
+                                                                    <div class="col-sm-8">
+                                                                        <h6>{{i.designation}}</h6>
+                                                                        <i><p>{{i.startDate}} - {{i.endDate}}</p></i>
 
-                                                            </div>
-                                                            <div class="col-sm-4 d-flex justify-content-end">
-                                                                    <p>Edit</p>
-                                                            </div>
-                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-4 d-flex justify-content-end">
+                                                                            <a href="{% url 'removeExperience' profile.id i.id%}">Edit</a>
+                                                                    </div>
+                                                                </div>
 
-                                                    </li>
-                                                  {% endfor%}
+                                                                </li>
+                                                          {% endfor%}
+                                                        {% else%}
+                                                            <li class="list-group-item">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 py-2 d-flex justify-content-center">
+                                                                        <h6><a href="" style="text-decoration:none; color:black;">Add Experience</a></h6>
+
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </li>
+                                                      {% endif%}
                                                   </ul>
                                         </div>
                                         <div class="card mt-5" >

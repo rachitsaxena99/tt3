@@ -101,3 +101,11 @@ def newSkill(request,pk):
         profile.skills.add(tag)
         profile.save()
     return redirect('fillExperience',pk=pk)
+
+
+def removeExperience(request,p1,p2):
+    profile = Profile.objects.get(id=p1)
+    experience = Experience.objects.get(id=p2)
+    profile.experience.remove(experience)
+    profile.save()
+    print('Donee')

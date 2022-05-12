@@ -1,0 +1,48 @@
+{% extends 'blog-basic.html'%}
+
+{% block content%}
+        <!-- Main Content-->
+ <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Notes</h1>
+                            <form method="POST" action="{% url 'notes' %}"> {% csrf_token%}
+
+                            <div class="row d-flex justify-content-center   mt-md-4">
+                                    <input type="text" name="keyword" class="form-control" placeholder="Search for subjects" style="max-width:25rem;"/>
+                                    <button class="btn btn-primary btn-sm" style="max-width:10rem;" type="submit">Search</button>
+
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container-fluid">
+            {% for i in subjects%}
+                <div class="row">
+
+
+                            <h3>{{subject}}</h3>
+
+                                {% for i in subject.units.all%}
+                                    <div class="col-sm-3 mb-5">
+                                        <div class="card" >
+                                          <img class="card-img-top" src="{{subject.img.url}}" alt="Card image cap">
+                                          <div class="card-body">
+                                            <h5 class="card-title">Unit {{i.unitNo}}</h5>
+                                            <a href="{{i.file.url}}" class="btn btn-primary btn-sm">Download?</a>
+                                          </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                </div>
+            {% endfor%}
+        </div>
+        <!-- Footer-->
+        {% endblock content%}
