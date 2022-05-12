@@ -15,11 +15,11 @@ def topics(request):
     }
     return render(request , 'article/topics.html' , params)
 
-def articles(request , pk):
-    articles = Article.objects.filter(tags__name__in = [pk])
+def articles(request ):
+    articles = Article.objects.all()
 
     params = {
-        'name':pk,
+
         'status': True if len(articles) else False,
         'articles': articles
     }
