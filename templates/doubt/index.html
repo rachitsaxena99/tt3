@@ -1,26 +1,23 @@
-{% extends 'basic.html'%}
+{% extends 'blog-basic.html'%}
 
 {% block content%}
-    <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
+<header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Doubts</h1>
+                            <form method="POST" action="{% url 'notes' %}"> {% csrf_token%}
 
-                <h3 class=" text-uppercase mb-0">What's on your Mind?</h3>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
+                            <div class="row d-flex justify-content-center   mt-md-4">
+                                    <input type="text" name="keyword" class="form-control" placeholder="Search for subjects" style="max-width:25rem;"/>
+                                    <button class="btn btn-primary btn-sm" style="max-width:10rem;" type="submit">Search</button>
+
+                            </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <!-- Masthead Subheading-->
-                <form class="" method="POST" action="{% url 'newDoubt' %}" enctype="multipart/form-data"> {% csrf_token%}
-                    <input type="text" name="doubtText" style="width:35rem; border-radius:5px; height:3rem;"/>
-                    <br>
-                    <input type="file" name="myfile" class="form-control mt-2" style=""/>
-                    <br>
-                    <button class="btn btn-danger btn-round btn-lg" type="submit"> Submit</button>
-                </form>
-
             </div>
         </header>
-{% endblock %}
+    {% endblock %}

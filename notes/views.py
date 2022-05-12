@@ -33,8 +33,9 @@ def searchResults(request):
 
 def mainPage(request):
     subjects = Subject.objects.all()
-
+    print(subjects)
     params = {
-        'subjects': subjects
+        'subjects': subjects,
+        'subject':subjects.first()
     }
     return render(request,'notes/notesPage.html',params)

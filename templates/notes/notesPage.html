@@ -23,19 +23,20 @@
         </header>
 
         <div class="container-fluid">
+
             {% for i in subjects%}
                 <div class="row">
 
 
-                            <h3>{{subject}}</h3>
+                            <h3>{{i}}</h3>
 
-                                {% for i in subject.units.all%}
+                                {% for j in i.units.all%}
                                     <div class="col-sm-3 mb-5">
                                         <div class="card" >
                                           <img class="card-img-top" src="{{subject.img.url}}" alt="Card image cap">
                                           <div class="card-body">
-                                            <h5 class="card-title">Unit {{i.unitNo}}</h5>
-                                            <a href="{{i.file.url}}" class="btn btn-primary btn-sm">Download?</a>
+                                            <h5 class="card-title">Unit {{j.unitNo}}</h5>
+                                            <a href="{{j.file.url}}" class="btn btn-primary btn-sm">Download?</a>
                                           </div>
                                         </div>
                                     </div>

@@ -2,8 +2,16 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class Category(models.Model):
+    ICON_CHOICES = (
+        ('Arr','Array'),
+        ('DP', 'Dynamic Programing'),
+        ('STR', 'String'),
+        ('LL','Linked List'),
+        ("S",'Stack')
+    )
     name = models.CharField(max_length=100)
     img = models.ImageField(blank=True, null=True, upload_to='./media/category')
+    icon = models.CharField(max_length=3, choices=ICON_CHOICES, blank=True , null=True)
     def __str__(self):
         return self.name
 

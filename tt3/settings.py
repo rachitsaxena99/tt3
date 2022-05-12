@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'question',
     'article',
     'doubt',
-    'notes'
+    'notes',
+    'django_filters',
+'widget_tweaks'
 ]
 
 MIDDLEWARE = [

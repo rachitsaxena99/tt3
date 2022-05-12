@@ -1,16 +1,23 @@
 from django.shortcuts import render
 from question.models import Category , Question
-
+from .filters import QuestionFilter
 def index(request):
     cateogry  = Category.objects.all()
     params = {'cateogry':cateogry}
     return render(request, 'question/index.html' , params)
 
 
-def questions(request, pk):
-    category = Category.objects.get(id=pk)
-    question = Question.objects.filter(tags__id=category.id)
-    params = {'questions':question}
+def questions(request):
+
+    question = Question.objects.all()
+    quesFilter = QuestionFilter(request.GET, queryset=question)
+    question = quesFilter.qs
+    print(question)
+
+    params = {'questions':question,
+
+              'quesFilter':quesFilter,
+              'count':question.count()}
     return render(request, 'question/questions.html', params)
 
 
