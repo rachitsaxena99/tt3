@@ -4,10 +4,16 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="loginPage")
 def index(request):
-    return render(request ,'doubt/index.html')
+    doubts = Doubt.objects.all()
+    params = {
+        'doubts':doubts
+    }
+    print(doubts)
+    return render(request ,'doubt/index.html', params)
 
 @login_required(login_url="loginPage")
 def newDoubt(request):
+    doubts = Doubt.objects.all()
     if request.method=='POST':
         kwargs = {}
         txt = request.POST.get('doubtText')
@@ -24,7 +30,11 @@ def newDoubt(request):
                 d1.save()
                 return redirect('doubt' , pk=d1.id)
 
-    return render(request , 'doubt/doubt.html')
+    print(doubts)
+    params = {
+        'doubts':doubts
+    }
+    return render(request , 'doubt/doubt.html',params)
 
 @login_required(login_url="loginPage")
 def doubt(request , pk):

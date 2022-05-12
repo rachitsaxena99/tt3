@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Doubt(models.Model):
+    heading = models.CharField(max_length=200,blank=True,null=True)
     ques = models.TextField()
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     image = models.ImageField(null=True , blank=True)

@@ -10,8 +10,7 @@
                             <form method="POST" action="{% url 'notes' %}"> {% csrf_token%}
 
                             <div class="row d-flex justify-content-center   mt-md-4">
-                                    <input type="text" name="keyword" class="form-control" placeholder="Search for subjects" style="max-width:25rem;"/>
-                                    <button class="btn btn-primary btn-sm" style="max-width:10rem;" type="submit">Search</button>
+                                    <button class="btn btn-primary btn-sm" style="max-width:10rem;" type="submit">Ask A Question</button>
 
                             </div>
                             </form>
@@ -20,4 +19,37 @@
                 </div>
             </div>
         </header>
+    <main>
+        <section class="py-5" id="features">
+                <div class="container-fluid px-5 my-5">
+                    <div class="row gx-5">
+                        <div class="col-lg-3 mb-5 mb-lg-0">
+                            <h2 class="fw-bolder mb-0">Showing {{count}} questions</h2>
+                            <hr>
+                            <a href=""  style="text-decoration:none; color:black;">Submit A Question?</a>
+                        </div>
+                        <div class="col-lg-9" >
+                            {% for i in doubts%}
+                              <div class="row ">
+                                  <div class="col py-3 mb-5 h-100 d-flex justify-content-between" style="border:1px solid #D3D3D3; background:#D3D3D3 ; border-radius:5px;">
+                                      <div class="">
+                                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">{{i.tags.icon}}</div>
+                                        <h2 class="h5">{{i.heading}}</h2>
+                                        <p class="mb-0">Posted By: {{i.user.username}} | Date: {{i.date}}</p>
+                                      </div>
+                                    <div>
+                                      <a href="{% url 'doubt' i.id %}" style="text-decoration:none; color:black;">
+                                        <h3>Try it -></h3>
+                                      </a>
+                                    </div>
+                                  </div>
+
+                              </div>
+                            {% endfor%}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+    </main>
     {% endblock %}
