@@ -9,7 +9,6 @@ class Doubt(models.Model):
     ques = models.TextField()
     meta = models.CharField(max_length=100, blank=True , null=True)
     user = models.ForeignKey(User , on_delete=models.CASCADE)
-    image = models.ImageField(null=True , blank=True)
     date = models.DateTimeField(auto_now_add=True , null=True , blank=True)
     comments = models.ManyToManyField('Comment' , blank=True , related_name="comments")
     category = models.ForeignKey(Category , on_delete=models.CASCADE, null=True , blank=True )

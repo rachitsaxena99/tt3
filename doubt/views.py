@@ -5,7 +5,7 @@ from question.models import Category
 from .fitlers import *
 @login_required(login_url="loginPage")
 def index(request):
-    doubts = Doubt.objects.all()
+    doubts = Doubt.objects.all().order_by('-date')
     queryset = DoubtFilter(request.GET, queryset=doubts)
     doubts = queryset.qs
     category = Category.objects.all()
@@ -18,7 +18,7 @@ def index(request):
             l1.append(doubts[i])
     print(l1)
     params = {
-        'doubts':doubts,
+        'doubts':l1,
         'queryset':queryset,
         'category':category
     }
@@ -28,17 +28,23 @@ def index(request):
 @login_required(login_url="loginPage")
 def newDoubt(request):
     print(Doubt.objects.all().first().id)
+    category = Category.objects.all()
     if request.method == 'POST':
+        category = Category.objects.get(id=request.POST.get('category'))
+
         doubt = Doubt.objects.create(
             heading=request.POST.get('heading'),
             ques = request.POST.get('ques'),
-            image = request.POST.get('image'),
+            category = category,
             user=request.user
         )
         doubt.save()
 
         return redirect("doubt",pk=doubt.id)
-    return render(request , 'doubt/newDoubt.html')
+    params ={
+        'category':category
+    }
+    return render(request , 'doubt/newDoubt.html', params)
 
 @login_required(login_url="loginPage")
 def doubt(request , pk):
