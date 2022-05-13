@@ -42,7 +42,8 @@ def newDoubt(request):
 
         return redirect("doubt",pk=doubt.id)
     params ={
-        'category':category
+        'category':category,
+
     }
     return render(request , 'doubt/newDoubt.html', params)
 
@@ -104,3 +105,14 @@ def searchDoubt(request):
         'doubts':doubt
     }
     return render(request , 'doubt/search-results.html',params)
+
+
+def newTag(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        category = Category.objects.create(
+            name=name
+        )
+        category.save()
+        return redirect('newDoubt')
+    return render(request ,'doubt/newTag.html')

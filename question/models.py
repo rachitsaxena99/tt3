@@ -7,11 +7,12 @@ class Category(models.Model):
         ('DP', 'Dynamic Programing'),
         ('STR', 'String'),
         ('LL','Linked List'),
-        ("S",'Stack')
+        ("S",'Stack'),
+        ('!=',"!=")
     )
     name = models.CharField(max_length=100)
     img = models.ImageField(blank=True, null=True, upload_to='./media/category')
-    icon = models.CharField(max_length=3, choices=ICON_CHOICES, blank=True , null=True)
+    icon = models.CharField(max_length=3, choices=ICON_CHOICES,default="!=", blank=True , null=True)
     def __str__(self):
         return self.name
 

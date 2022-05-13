@@ -11,14 +11,14 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        {% include 'static/blog-css.html'%}
+        {% include 'static/third-css.html'%}
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                    <a class="navbar-brand" href="{% url 'index' %}">TraineeToolz</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -64,6 +64,14 @@
                                     <div class="card-body">
                                         <!-- Comment form-->
                                         <form class="mb-4" method="post" action="{% url 'newDoubt' %}"> {% csrf_token %}
+                                            <label>What's it about?</label>
+                                            <small style="font-size:12px;"><a style=" color:blue;" href="{% url 'newTag' %}">Can't find your Tag? Create one</a></small>
+
+                                            <select class="form-select my-3" name="category" aria-label="Default select example">
+                                              {% for i in category%}
+                                              <option value="{{i.id}}">{{i}}</option>
+                                              {% endfor %}
+                                            </select>
 
                                             <div class="form-group">
                                                 <input required type="text" class="form-control py-3" name="heading" placeholder="Enter Heading"/>
@@ -72,14 +80,8 @@
                                                 <textarea required class="form-control" name="ques" id="exampleFormControlTextarea1" placeholder="Explain your problem Further" rows="3"></textarea>
                                             </div>
 
-                                            <select class="form-select my-3" name="category" aria-label="Default select example">
-                                              {% for i in category%}
-                                              <option value="{{i.id}}">{{i}}</option>
-                                              {% endfor %}
-                                            </select>
-
                                             <br>
-                                          <button class="btn btn-primary btn-sm " type="submit">Submit</button>
+                                          <button class="btn btn-primary btn-sm mt-lg-3" type="submit">Submit</button>
                                         </form>
                                         <!-- Comment with nested comments-->
 

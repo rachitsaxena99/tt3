@@ -8,5 +8,8 @@ urlpatterns = [
     path('newComment/<str:pk>/' , views.newComment , name='newComment'),
     path('newSubComment/<str:pk>/' , views.newSubComment , name = 'newSubComment'),
     path('allDoubts', views.allDoubts , name='allDoubts'),
-    path('searchDoubt', views.searchDoubt , name='searchDoubt')
+    path('searchDoubt', views.searchDoubt , name='searchDoubt'),
+
+
+    path('newTag', views.newTag , name='newTag')
 ]
