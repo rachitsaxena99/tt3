@@ -27,7 +27,7 @@ def index(request):
 
 @login_required(login_url="loginPage")
 def newDoubt(request):
-    print(Doubt.objects.all().first().id)
+
     category = Category.objects.all()
     if request.method == 'POST':
         category = Category.objects.get(id=request.POST.get('category'))
