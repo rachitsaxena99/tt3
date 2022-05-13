@@ -1,7 +1,7 @@
 from django.db import models
 
 class Subject(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     units = models.ManyToManyField('Unit', blank=True, related_name='units')
     img = models.ImageField(null=True , blank=True)
     def __str__(self):
