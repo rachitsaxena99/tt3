@@ -6,5 +6,7 @@ urlpatterns = [
     path('doubt/<str:pk>/' , views.doubt , name='doubt'),
     path('yourDoubts',views.yourDoubts,name='yourDoubts' ),
     path('newComment/<str:pk>/' , views.newComment , name='newComment'),
-    path('newSubComment/<str:pk>/' , views.newSubComment , name = 'newSubComment')
+    path('newSubComment/<str:pk>/' , views.newSubComment , name = 'newSubComment'),
+    path('allDoubts', views.allDoubts , name='allDoubts'),
+    path('searchDoubt', views.searchDoubt , name='searchDoubt')
 ]
