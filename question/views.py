@@ -34,7 +34,7 @@ def questions_detail(request, pk):
     }
     return render(request, 'question/questions_detail.html', params)
 
-
+@login_required(login_url="loginPage")
 def newQuestion(request):
     tags = Category.objects.all()
     if request.method=='POST':
@@ -47,7 +47,7 @@ def newQuestion(request):
             description = desc,
             user = request.user,
             tags=selectedTag,
-            image = request.POST.get('image')
+
         )
         question.save()
         return redirect('questions_detail',pk=question.id)

@@ -32,7 +32,6 @@ class Question(models.Model):
     difficulty = models.CharField(max_length=100 , choices=DIFF_CHOICES , default='Easy')
     tags = models.ForeignKey(Category,blank=True , null=True, on_delete=models.CASCADE)
     description = models.TextField()
-    image = models.ImageField(null=True, blank=True)
     example = models.ManyToManyField('Example' , blank=True , related_name='exampleQuestion')
     companies = models.ManyToManyField(Company, blank=True)
 
@@ -43,7 +42,6 @@ class Example(models.Model):
     input = models.CharField(max_length=1000)
     output = models.CharField(max_length=1000)
     explaination = models.TextField()
-    img = models.ImageField(null=True , blank=True)
     ques = models.ForeignKey(Question , on_delete=models.CASCADE , related_name='ques')
 
     def __str__(self):

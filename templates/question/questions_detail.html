@@ -74,7 +74,7 @@ background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, F
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{question.difficulty}}</a>
                                 </header>
                                 <!-- Preview image figure-->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="{{question.image.url}}" style="max-height:20rem ;" alt="..." /></figure>
+                                <figure class="mb-4"></figure>
                                 <!-- Post content-->
                                 <section class="mb-5">
                                     <h2 class=" mb-4 mt-5">Description  </h2>
@@ -84,8 +84,7 @@ background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, F
                                     <h2 class=" mb-4 mt-5">Examples  </h2>
 
                                     {% for i in question.example.all%}
-                                        <div class="card h-100 shadow p-1 border-0" style="background:#D3D3D3;">
-                                            <img class="card-img-top" src="{{i.img.url}}" alt="..." />
+                                        <div class="card h-100 shadow p-1 border-0 my-4" style="background:#D3D3D3;">
                                             <div class="card-body p-4">
                                                 <h5 class="card-title mb-3">Input: {{i.input}}</h5>
                                                 <h5 class="card-title mb-3">Output: {{i.output}}</h5>
