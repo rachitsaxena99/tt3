@@ -34,7 +34,7 @@
                                 {% for j in i.units.all%}
                                     <div class="col-sm-3 mb-3">
                                         <div class="card p-3 bg-dark" style="border-radius:5px;">
-                                          <img class="card-img-top" src="{{subject.img.url}}" alt="Card image cap">
+                                          <img class="card-img-top" src="{{i.img.url}}" alt="Card image cap">
                                           <div class="card-body ">
                                             <h5 class="card-title text-light">Unit {{j.unitNo}}</h5>
                                             <a href="{{j.file.url}}" class="btn btn-primary btn-sm">Download?</a>

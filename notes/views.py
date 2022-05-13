@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from notes.models import Subject
 from .filters import *
 from django.contrib.auth.decorators import login_required
 
