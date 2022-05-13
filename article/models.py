@@ -13,7 +13,6 @@ class Article(models.Model):
     )
 
     user = models.ForeignKey(User , on_delete=models.CASCADE)
-
     heading = models.CharField(max_length=200)
     date = models.DateField(auto_now_add=True)
     meta = models.CharField(max_length=200 , blank=True,null=True)

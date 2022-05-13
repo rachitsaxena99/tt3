@@ -78,7 +78,7 @@
                         <div class="col-lg-3 mb-5 mb-lg-0">
                             <h2 class="fw-bolder mb-0">Showing {{count}} questions</h2>
                             <hr>
-                            <a href=""  style="text-decoration:none; color:black;">Submit A Question?</a>
+                            <a href="{% url 'newQuestion' %}"  style="text-decoration:none; color:black;">Submit A Question?</a>
                         </div>
                         <div class="col-lg-9" >
                             {% for i in questions%}

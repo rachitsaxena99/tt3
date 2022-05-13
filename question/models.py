@@ -29,7 +29,7 @@ class Question(models.Model):
     heading = models.CharField(max_length=200)
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-    difficulty = models.CharField(max_length=100 , choices=DIFF_CHOICES )
+    difficulty = models.CharField(max_length=100 , choices=DIFF_CHOICES , default='Easy')
     tags = models.ForeignKey(Category,blank=True , null=True, on_delete=models.CASCADE)
     description = models.TextField()
     image = models.ImageField(null=True, blank=True)

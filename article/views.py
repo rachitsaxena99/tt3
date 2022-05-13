@@ -73,3 +73,21 @@ def searchResult(request ):
         'flag':flag
     }
     return render(request , 'article/searchResults.html',params)
+
+
+def newArticle(request):
+    tags = Tag.objects.all()
+    if request.method == 'POST':
+        # article = Article.objects.create(
+        #     user=request.user,
+        #     heading = request.POST.get('heading'),
+        #     meta = request.POST.get('meta'),
+        #     content = request.POST.get('content')
+        # )
+        # article.save()
+        # return redirect('article_detail',pk=article.id)
+        print(request.POST)
+    params = {
+        'tags':tags
+    }
+    return render(request,'article/newArticle.html',params)

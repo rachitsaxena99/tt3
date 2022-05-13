@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from question.models import Category , Question
 from .filters import QuestionFilter
 from django.contrib.auth.decorators import login_required
@@ -33,3 +33,25 @@ def questions_detail(request, pk):
         'paras':paras
     }
     return render(request, 'question/questions_detail.html', params)
+
+
+def newQuestion(request):
+    tags = Category.objects.all()
+    if request.method=='POST':
+        heading = request.POST.get('heading')
+        desc = request.POST.get('description')
+        tag = request.POST.get('selectTool')
+        selectedTag = Category.objects.get(id=tag)
+        question = Question.objects.create(
+            heading=heading,
+            description = desc,
+            user = request.user,
+            tags=selectedTag,
+            image = request.POST.get('image')
+        )
+        question.save()
+        return redirect('questions_detail',pk=question.id)
+    params ={
+        'tags':tags
+    }
+    return render(request,'question/newQuestion.html',params)

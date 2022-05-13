@@ -7,6 +7,6 @@ urlpatterns = [
     path('article-detail/<str:pk>', views.article_detail, name='article_detail'),
     path('newComment/<str:pk>' , views.newComment , name='newComment'),
 
-
+    path('newArticle', views.newArticle,name='newArticle'),
     path('search-result', views.searchResult , name='searchResult')
 ]
