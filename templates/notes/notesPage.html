@@ -8,7 +8,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             <h1>Notes</h1>
-                            <form method="POST" action="{% url 'notes' %}"> {% csrf_token%}
+                            <form method="POST" action="{% url 'search-subject' %}"> {% csrf_token%}
 
                             <div class="row d-flex justify-content-center   mt-md-4">
                                     <input type="text" name="keyword" class="form-control" placeholder="Search for subjects" style="max-width:25rem;"/>

@@ -2,13 +2,13 @@
 
 {% block content%}
         <!-- Main Content-->
- <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+ <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8OXx8fGVufDB8fHx8&w=1000&q=80')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             <h1>Notes</h1>
-                            <form method="POST" action="{% url 'notes' %}"> {% csrf_token%}
+                            <form method="POST" action="{% url 'search-subject' %}"> {% csrf_token%}
 
                             <div class="row d-flex justify-content-center   mt-md-4">
                                     <input type="text" name="keyword" class="form-control" placeholder="Search for subjects" style="max-width:25rem;"/>
@@ -23,9 +23,13 @@
         </header>
 
         <div class="container-fluid">
-            <h3>Showing Results for {{}}</h3>
+            <h3>Showing Results for {{subject.count}}</h3>
+            {% if not subject%}
+            <h3>No Results Found</h3>
+            {% else%}
+
             <hr>
-            {% for i in subjects%}
+            {% for i in subject%}
                 <div class="row">
 
 
@@ -34,7 +38,7 @@
                                 {% for j in i.units.all%}
                                     <div class="col-sm-3 mb-5">
                                         <div class="card" >
-                                          <img class="card-img-top" src="{{i.img.url}}" alt="Card image cap">
+                                          <img class="card-img-top" src="{{i.img.url}}" alt="Card">
                                           <div class="card-body">
                                             <h5 class="card-title">Unit {{j.unitNo}}</h5>
                                             <a href="{{j.file.url}}" class="btn btn-primary btn-sm">Download?</a>
@@ -45,6 +49,7 @@
 
                 </div>
             {% endfor%}
+            {% endif%}
         </div>
         <!-- Footer-->
         {% endblock content%}

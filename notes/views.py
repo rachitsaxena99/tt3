@@ -23,9 +23,9 @@ def index(request):
 def searchResults(request):
     subject = Subject.objects.all().first()
     if request.method=='POST':
-        input = request.POST.get('subject')
+        input = request.POST.get('keyword')
 
-        subject = Subject.objects.get(name=input)
+        subject = Subject.objects.filter(name__contains=input)
         print(subject)
     params = {
         'subject':subject,
