@@ -8,6 +8,8 @@ class Subject(models.Model):
         return self.name
 
 
+
+
 class Unit(models.Model):
     subject = models.ForeignKey(Subject , on_delete=models.CASCADE)
     unitNo = models.IntegerField(default=1)
@@ -17,3 +19,4 @@ class Unit(models.Model):
 
     class Meta:
         unique_together = ('unitNo','subject')
+        ordering = ['unitNo']

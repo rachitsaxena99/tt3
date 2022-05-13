@@ -12,7 +12,7 @@ def index(request):
         subjects = Subject.objects.filter(name__contains=keyword)
         if not len(subjects):
             flag=True
-
+    print(flag)
     params = {
         'subjects':subjects,
         'allSubjects':Subject.objects.all(),
