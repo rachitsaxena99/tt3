@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Doubt(models.Model):
     heading = models.CharField(max_length=200,blank=True,null=True)
     ques = models.TextField()
+    meta = models.CharField(max_length=100, blank=True , null=True)
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     image = models.ImageField(null=True , blank=True)
     date = models.DateTimeField(auto_now_add=True , null=True , blank=True)
@@ -28,3 +30,14 @@ class subComment(models.Model):
     doubt = models.ForeignKey(Doubt , on_delete=models.CASCADE)
     def __str__(self):
         return self.body
+
+
+@receiver(post_save , sender=Doubt)
+def create_meta(sender,instance,created, **kwargs):
+    if created:
+        ques = str(instance.ques)
+        if len(ques)<100:
+            instance.meta = ques[:len(ques)]
+        else:
+            instance.meta = ques[:99]
+        instance.save()

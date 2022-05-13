@@ -13,28 +13,18 @@ def index(request):
 
 @login_required(login_url="loginPage")
 def newDoubt(request):
-    doubts = Doubt.objects.all()
-    if request.method=='POST':
-        kwargs = {}
-        txt = request.POST.get('doubtText')
+    print(Doubt.objects.all().first().id)
+    if request.method == 'POST':
+        doubt = Doubt.objects.create(
+            heading=request.POST.get('heading'),
+            ques = request.POST.get('ques'),
+            image = request.POST.get('image'),
+            user=request.user
+        )
+        doubt.save()
 
-        if txt is not None:
-            file = request.FILES.get('myfile')
-
-            if file is not None:
-                d1 = Doubt.objects.create(ques=txt , user = request.user , image=file)
-                d1.save()
-                return redirect('doubt' , pk=d1.id)
-            else:
-                d1 = Doubt.objects.create(ques=txt , user = request.user)
-                d1.save()
-                return redirect('doubt' , pk=d1.id)
-
-    print(doubts)
-    params = {
-        'doubts':doubts
-    }
-    return render(request , 'doubt/doubt.html',params)
+        return redirect("doubt",pk=doubt.id)
+    return render(request , 'doubt/newDoubt.html')
 
 @login_required(login_url="loginPage")
 def doubt(request , pk):
@@ -65,3 +55,11 @@ def newSubComment(request , pk):
         comm.subComment.add(nw)
         comm.save()
         return redirect('doubt' , pk=comm.doubt.id)
+
+def yourDoubts(request):
+    doubt = Doubt.objects.filter(user=request.user)
+
+    params = {
+        'doubts':doubt
+    }
+    return render(request,'doubt/yourDoubts.html',params)

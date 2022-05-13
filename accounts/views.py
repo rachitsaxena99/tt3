@@ -9,7 +9,7 @@ def loginPage(request):
     if request.method=='POST':
         username = request.POST.get('username')
         pwd = request.POST.get('pwd')
-        print(username , pwd)
+
         if username and pwd is not None:
             user = authenticate(request, username=username, password=pwd)
             if user is not None:

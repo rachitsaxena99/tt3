@@ -1,0 +1,58 @@
+{% extends 'blog-basic.html'%}
+{% block content%}
+<header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Doubts</h1>
+
+
+                            <div class="row d-flex justify-content-center   mt-md-4">
+                                    <a href="{% url 'newDoubt'%}" class="btn btn-primary btn-sm" style="max-width:10rem;" >Ask A Question</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+<div class="container ">
+    <div class="row d-flex justify-content-center">
+
+    <div class="col-lg-9" >
+
+<style>
+    .doubtText{
+    font-family: Arial, Helvetica, sans-serif;
+  font-size:12px;}
+</style>
+                                        {% for i in doubts%}
+
+        <a href="{% url 'doubt' i.id%}">
+                                            <div class="row my-2    ">
+                                              <div class="col py-3 mb-5 h-100 d-flex justify-content-between" style="border:1px solid #D3D3D3; background:#a9a9a9 ; opacity:0.8; border-radius:5px;">
+                                                  <div class="">
+                                                    <h2 class="h5">{{i.heading}}</h2>
+                                                    <p class="mb-0 doubtText">{{i.meta}}</p>
+                                                      <small class="doubtText">Comments:{{i.comments.all.count}}</small>
+                                                  </div>
+                                                <div>
+                                                  <a href="{% url 'doubt' i.id%}" style="text-decoration:none; color:black;">
+                                                    <p class="doubtText">Posted on: <br>{{i.date}}</p>
+                                                  </a>
+                                                </div>
+                                              </div>
+
+                                            </div>
+            </a>
+                                        {% endfor%}
+
+
+
+    </div>
+        </div>
+</div>
+
+{% endblock%}
