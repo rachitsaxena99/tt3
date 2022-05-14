@@ -3,3 +3,5 @@ from accounts.models import  *
 
 admin.site.register(Profile)
 admin.site.register(Experience)
+
+admin.site.register(Education)

@@ -30,7 +30,7 @@
             <div class="row d-flex justify-content-center">
               <div class="col-lg-8">
                 <h4 class="fw-bold mb-5">Welcome to TraineeToolz {{profile.user.username}}</h4>
-                <form action="{% url 'fillExperience' profile.id %}" method="POST"> {% csrf_token%}
+                <form action="" method="POST"> {% csrf_token%}
                   <!-- 2 column grid layout with text inputs for the first and last names -->
                   <div class="row">
                     <div class="col-md-12 mb-4">
@@ -42,18 +42,18 @@
                                                         </button>
                                                   </div>
                                                   <ul class="list-group list-group-flush">
-                                                      {% for i in profile.experience.all%}
+                                                      {% for i in profile.education.all%}
                                                       <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-sm-8">
-                                                                <h6>{{i.company}}</h6>
+                                                                <h6>{{i.school}}</h6>
                                                                 <h6>{{i.designation}}</h6>
 
                                                                 <i><p>{{i.startDate}} - {{i.endDate}}</p></i>
 
                                                             </div>
                                                             <div class="col-sm-4 d-flex justify-content-end">
-                                                                    <a href="{% url 'removeExperience' profile.id i.id%}" >Remove</a>
+                                                                    <a href="{% url 'removeEducation' profile.id i.id%}" >Remove</a>
 
                                                             </div>
                                                         </div>
@@ -63,36 +63,11 @@
 
                                                   </ul>
                                         </div>
-                        <div class="card mt-5" >
-                                                  <div class="card-header d-flex justify-content-between">
-                                                    <span>Skills</span>
-                                                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
-                                                          Add
-                                                        </button>
-                                                  </div>
-                                                  <ul class="list-group list-group-flush">
-                                                      {% for i in profile.skills.all%}
-                                                      <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-sm-8 d-flex justify-content-start">
-                                                                <h6>{{i.name}}</h6>
 
-
-                                                            </div>
-                                                            <div class="col-sm-4 d-flex justify-content-end">
-
-                                                            </div>
-                                                        </div>
-
-                                                      </li>
-                                                      {% endfor%}
-
-                                                  </ul>
-                                        </div>
                     </div>
                   </div>
 
-                  <a href="{% url 'fillEducation' profile.id %}" class="btn btn-primary btn-block mb-4">
+                  <a href="{% url 'index' %}" class="btn btn-primary btn-block mb-4">
                     Continue
                   </a>
 
@@ -113,13 +88,13 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST" action="{% url 'newExperience' profile.id%}"> {% csrf_token%}
+            <form method="POST" action="{% url 'fillEducation' profile.id%}"> {% csrf_token%}
               <div class="row">
                 <input type="text" required name="designation" class="form-control m-3" placeholder="Enter Designation" />
 
               </div>
               <div class="row">
-                <input type="text" required name="company" class="form-control m-3" placeholder="Enter Company" />
+                <input type="text" required name="school" class="form-control m-3" placeholder="Enter Company" />
 
               </div>
               <div class="row mt-4">

@@ -74,6 +74,32 @@ def fillExperience(request,pk):
     return render(request , 'accounts/fillExperience.html', params)
 
 
+def fillEducation(request,pk):
+    profile = Profile.objects.get(user__id=pk)
+    if request.method == 'POST':
+        education = Education.objects.create(
+            school= request.POST.get('school'),
+            startDate=request.POST.get('startDate'),
+            endDate=request.POST.get('endDate'),
+            designation=request.POST.get('designation'),
+            user=request.user
+        )
+        education.save()
+        profile.education.add(education)
+        profile.save()
+        return redirect("fillEducation",pk=pk)
+    params = {
+        'profile':profile
+    }
+    return render(request,'accounts/fillEducation.html', params)
+
+def removeEducation(request,p1,p2):
+    profile = Profile.objects.get(id=p1)
+    education = Education.objects.get(id=p2)
+    profile.education.remove(education)
+
+    profile.save()
+    return redirect('profilePage',pk=profile.user.id)
 def newExperience(request ,pk):
     profile = Profile.objects.get(id=pk)
 

@@ -13,8 +13,13 @@ urlpatterns = [
 
     path('fill-experience/<str:pk>' , views.fillExperience , name='fillExperience'),
 
+    path('fill-education/<str:pk>', views.fillEducation, name='fillEducation'),
 
     path('newExperience/<str:pk>',views.newExperience , name='newExperience' ),
+    path('removeEducation/<str:p1>/<str:p2>/', views.removeEducation , name='removeEducation'),
     path('removeExperience/<str:p1>/<str:p2>/' , views.removeExperience,name='removeExperience'),
+
+
+
     path('newSkill/<str:pk>', views.newSkill , name='newSkill')
 ]

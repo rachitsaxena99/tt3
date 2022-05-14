@@ -14,6 +14,7 @@ class Profile(models.Model):
     profession = models.CharField(max_length=100 , default='other')
     about = models.TextField(blank=True)
     experience = models.ManyToManyField('Experience' , blank=True)
+    education = models.ManyToManyField('Education', blank=True)
     skills = models.ManyToManyField(Tag , blank=True)
     # connections = models.ManyToManyField('Connection' , blank=True, related_name='connection')
     def __str__(self):
@@ -25,6 +26,13 @@ class Connection(models.Model):
     profile = models.ForeignKey(Profile , on_delete=models.CASCADE)
     def __str__(self):
         return self.user.username
+
+class Education(models.Model):
+    school = models.CharField(max_length=1000)
+    startDate = models.DateField()
+    endDate = models.DateField()
+    designation = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True,null=True)
 class Experience(models.Model):
     # company = models.ForeignKey(Company , on_delete=models.CASCADE)
     company = models.CharField(max_length=1000)
