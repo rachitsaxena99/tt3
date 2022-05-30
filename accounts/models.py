@@ -4,6 +4,7 @@ from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from question.models import Company
 from article.models import Tag
+
 class Profile(models.Model):
     profession = (
         ('student','student'),
@@ -16,7 +17,7 @@ class Profile(models.Model):
     experience = models.ManyToManyField('Experience' , blank=True)
     education = models.ManyToManyField('Education', blank=True)
     skills = models.ManyToManyField(Tag , blank=True)
-    # connections = models.ManyToManyField('Connection' , blank=True, related_name='connection')
+
     def __str__(self):
         return self.user.username
 
@@ -33,6 +34,7 @@ class Education(models.Model):
     endDate = models.DateField()
     designation = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True,null=True)
+
 class Experience(models.Model):
     # company = models.ForeignKey(Company , on_delete=models.CASCADE)
     company = models.CharField(max_length=1000)

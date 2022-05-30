@@ -5,3 +5,6 @@ urlpatterns = [
     path('notes', views.index , name='notes'),
     path('search-results', views.searchResults , name='search-subject')
 ]
+
+
+# traintoolz.com/nots/

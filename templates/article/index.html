@@ -75,19 +75,19 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
 
                     {% for i in articles%}
-                    <div class="post-preview">
-                        <a href="{% url 'article_detail' i.id %}">
-                            <h2 class="post-title">{{i.heading}}</h2>
-                            <h3 class="post-subtitle">{{i.meta}}</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="{% url 'profilePage' i.user.id %}">{{i.user.username}}</a>
-                            on September 24, 2022
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
+                        <div class="post-preview">
+                            <a href="{% url 'article_detail' i.id %}">
+                                <h2 class="post-title">{{i.heading}}</h2>
+                                <h3 class="post-subtitle">{{i.meta}}</h3>
+                            </a>
+                            <p class="post-meta">
+                                Posted by
+                                <a href="{% url 'profilePage' i.user.id %}">{{i.user.username}}</a>
+                                on {{i.date}}
+                            </p>
+                        </div>
+                        <!-- Divider-->
+                        <hr class="my-4" />
                     {% endfor%}
 
 

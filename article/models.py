@@ -11,13 +11,11 @@ class Article(models.Model):
         ('yes','yes'),
         ('no','no')
     )
-
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     heading = models.CharField(max_length=200)
     date = models.DateField(auto_now_add=True)
     meta = models.CharField(max_length=200 , blank=True,null=True)
     content = models.TextField()
-
     tags = models.ManyToManyField(Tag , blank=True)
     published = models.CharField(max_length=10 , choices=publish_choice , default='no')
 

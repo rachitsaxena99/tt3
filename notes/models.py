@@ -9,7 +9,6 @@ class Subject(models.Model):
 
 
 
-
 class Unit(models.Model):
     subject = models.ForeignKey(Subject , on_delete=models.CASCADE)
     unitNo = models.IntegerField(default=1)

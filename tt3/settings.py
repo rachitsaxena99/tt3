@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'doubt',
     'notes',
     'django_filters',
-'widget_tweaks'
+    'testroom',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
